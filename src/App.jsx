@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const defaultTemplate =
-  "The speaker's tone is {tone} with a {pitch} pitch and a {rate} delivery. Their volume is {volume}, suggesting that they feel {desc}.";
+  "The speaker's tone is {tone}, with a {pitch} pitch and a {rate} delivery. Their volume is {volume}, suggesting that they feel {desc}.";
 
 const emotions = [
   {
@@ -57,11 +57,436 @@ const emotions = [
       'volatile',
     ],
   },
+  {
+    label: 'Contempt',
+    tone: [
+      'mocking',
+      'sarcastic',
+      'scornful',
+      'dry',
+      'disdainful',
+      'sneering',
+      'dismissive',
+      'cutting',
+    ],
+    pitch: [
+      'flat',
+      'nasal',
+      'low',
+      'dull',
+      'bored',
+      'monotone',
+      'drawled',
+      'scoffing',
+    ],
+    rate: [
+      'deliberate',
+      'slow',
+      'smug',
+      'aloof',
+      'patronizing',
+      'dragging',
+      'clipped',
+      'cool',
+    ],
+    volume: [
+      'low',
+      'quiet',
+      'muted',
+      'reserved',
+      'controlled',
+      'soft',
+      'restrained',
+      'dismissive',
+    ],
+    desc: [
+      'superior',
+      'condescending',
+      'disdainful',
+      'uninterested',
+      'smug',
+      'aloof',
+      'scornful',
+      'indifferent',
+    ],
+  },
+  {
+    label: 'Disgust',
+    tone: [
+      'cold',
+      'bitter',
+      'grim',
+      'displeased',
+      'sour',
+      'judgmental',
+      'disdainful',
+      'tight',
+    ],
+    pitch: [
+      'sharp',
+      'uneven',
+      'nasal',
+      'wavering',
+      'scratchy',
+      'high',
+      'trembling',
+      'thin',
+    ],
+    rate: [
+      'jerky',
+      'reluctant',
+      'hesitant',
+      'short',
+      'stilted',
+      'abrupt',
+      'clipped',
+      'tense',
+    ],
+    volume: [
+      'subdued',
+      'low',
+      'curt',
+      'flat',
+      'constrained',
+      'hushed',
+      'breathy',
+      'dry',
+    ],
+    desc: [
+      'repulsed',
+      'disturbed',
+      'offended',
+      'queasy',
+      'unsettled',
+      'sickened',
+      'displeased',
+      'disapproving',
+    ],
+  },
+  {
+    label: 'Fear',
+    tone: [
+      'anxious',
+      'nervous',
+      'shaky',
+      'panicked',
+      'hesitant',
+      'worried',
+      'tense',
+      'uncertain',
+    ],
+    pitch: [
+      'high',
+      'quivering',
+      'shaky',
+      'rising',
+      'fragile',
+      'unstable',
+      'thin',
+      'squeaky',
+    ],
+    rate: [
+      'halting',
+      'breathless',
+      'jumpy',
+      'broken',
+      'uneven',
+      'fast',
+      'fragmented',
+      'rushed',
+    ],
+    volume: [
+      'soft',
+      'whispery',
+      'faltering',
+      'low',
+      'faint',
+      'shaky',
+      'hushed',
+      'unstable',
+    ],
+    desc: [
+      'afraid',
+      'threatened',
+      'terrified',
+      'alarmed',
+      'panicked',
+      'uneasy',
+      'stressed',
+      'jumpy',
+    ],
+  },
+  {
+    label: 'Sadness',
+    tone: [
+      'soft',
+      'downcast',
+      'weary',
+      'sorrowful',
+      'heavy',
+      'pained',
+      'flat',
+      'melancholic',
+    ],
+    pitch: [
+      'low',
+      'falling',
+      'dull',
+      'flat',
+      'subdued',
+      'trailing',
+      'monotone',
+      'soft',
+    ],
+    rate: [
+      'slow',
+      'dragging',
+      'lethargic',
+      'faltering',
+      'subdued',
+      'hesitant',
+      'quiet',
+      'weary',
+    ],
+    volume: [
+      'quiet',
+      'low',
+      'muted',
+      'gentle',
+      'soft',
+      'faint',
+      'hushed',
+      'subdued',
+    ],
+    desc: [
+      'sad',
+      'depressed',
+      'heartbroken',
+      'hopeless',
+      'lonely',
+      'downcast',
+      'grieving',
+      'reflective',
+    ],
+  },
+  {
+    label: 'Surprise',
+    tone: [
+      'startled',
+      'amazed',
+      'surprised',
+      'bright',
+      'shocked',
+      'wide-eyed',
+      'open',
+      'reactive',
+    ],
+    pitch: [
+      'high',
+      'rising',
+      'sudden',
+      'sharp',
+      'squeaky',
+      'varied',
+      'animated',
+      'shifting',
+    ],
+    rate: [
+      'fast',
+      'sudden',
+      'staccato',
+      'spontaneous',
+      'jumpy',
+      'broken',
+      'brisk',
+      'alert',
+    ],
+    volume: [
+      'sharp',
+      'medium',
+      'lifted',
+      'elevated',
+      'quick',
+      'sudden',
+      'brisk',
+      'strong',
+    ],
+    desc: [
+      'surprised',
+      'amazed',
+      'stunned',
+      'confused',
+      'startled',
+      'intrigued',
+      'shocked',
+      'baffled',
+    ],
+  },
+  {
+    label: 'Happiness',
+    tone: [
+      'cheerful',
+      'upbeat',
+      'lively',
+      'warm',
+      'enthusiastic',
+      'joyful',
+      'bright',
+      'playful',
+    ],
+    pitch: [
+      'medium',
+      'sing-song',
+      'melodic',
+      'dynamic',
+      'musical',
+      'steady',
+      'crisp',
+      'rising',
+    ],
+    rate: [
+      'smooth',
+      'flowing',
+      'expressive',
+      'rhythmic',
+      'animated',
+      'fluid',
+      'joyful',
+      'easy',
+    ],
+    volume: [
+      'moderate',
+      'clear',
+      'ringing',
+      'full',
+      'vibrant',
+      'bright',
+      'resonant',
+      'energized',
+    ],
+    desc: [
+      'happy',
+      'delighted',
+      'excited',
+      'cheerful',
+      'pleased',
+      'thrilled',
+      'joyful',
+      'content',
+    ],
+  },
+  {
+    label: 'Tenderness',
+    tone: [
+      'gentle',
+      'loving',
+      'soft',
+      'warm',
+      'affectionate',
+      'soothing',
+      'caring',
+      'calm',
+    ],
+    pitch: [
+      'low',
+      'mellow',
+      'soft',
+      'lilting',
+      'gentle',
+      'slow',
+      'warm',
+      'steady',
+    ],
+    rate: [
+      'slow',
+      'soft-spoken',
+      'tender',
+      'nurturing',
+      'calm',
+      'gentle',
+      'patient',
+      'quiet',
+    ],
+    volume: [
+      'low',
+      'gentle',
+      'soft',
+      'tender',
+      'quiet',
+      'mellow',
+      'subdued',
+      'warm',
+    ],
+    desc: [
+      'loving',
+      'affectionate',
+      'caring',
+      'gentle',
+      'compassionate',
+      'kind',
+      'nurturing',
+      'tender',
+    ],
+  },
+  {
+    label: 'Calm',
+    tone: [
+      'even',
+      'relaxed',
+      'balanced',
+      'composed',
+      'steady',
+      'neutral',
+      'smooth',
+      'mellow',
+    ],
+    pitch: [
+      'low',
+      'even',
+      'soft',
+      'steady',
+      'flat',
+      'unchanging',
+      'smooth',
+      'calm',
+    ],
+    rate: [
+      'slow',
+      'measured',
+      'smooth',
+      'steady',
+      'deliberate',
+      'fluid',
+      'gentle',
+      'unhurried',
+    ],
+    volume: [
+      'soft',
+      'steady',
+      'low',
+      'quiet',
+      'balanced',
+      'even',
+      'muted',
+      'consistent',
+    ],
+    desc: [
+      'calm',
+      'peaceful',
+      'grounded',
+      'centered',
+      'secure',
+      'composed',
+      'tranquil',
+      'stable',
+    ],
+  },
 ];
 
 function Dropdown({ label, options, selected, onChange }) {
   const handleChange = (e) => {
     const value = e.target.value;
+    console.log(value);
     onChange(value);
   };
 
@@ -118,9 +543,10 @@ export default function ScrollSelections() {
       key="1"
       label="Emotion"
       options={emotions.map((emotion) => emotion.label)}
-      selected={emotionSelection}
+      selected={emotionSelection.label || ''}
       onChange={(label) => {
         const selected = emotions.find((e) => e.label === label);
+        console.log(selected);
         setEmotionSelection(selected || {});
       }}
     />
@@ -240,9 +666,6 @@ export default function ScrollSelections() {
       >
         Emotion Gen
       </h2>
-      <p style={{ textAlign: 'center', color: '#aaa', marginTop: '1rem' }}>
-        Selected Emotion: {emotionSelection.label || 'None'}
-      </p>
       <div
         style={{
           display: 'flex',
@@ -255,8 +678,11 @@ export default function ScrollSelections() {
       >
         {dropdowns}
       </div>
+      <p style={{ textAlign: 'center', color: '#aaa', marginTop: '2rem' }}>
+        Template
+      </p>
       <div
-        style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}
+        style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }}
       >
         <input
           type="text"
@@ -275,8 +701,11 @@ export default function ScrollSelections() {
           }}
         />
       </div>
+      <p style={{ textAlign: 'center', color: '#aaa', marginTop: '2rem' }}>
+        Output
+      </p>
       <div
-        style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}
+        style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }}
       >
         <input
           type="text"
