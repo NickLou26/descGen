@@ -695,7 +695,7 @@ export default function ScrollSelections() {
       </p>
       <p style={{ textAlign: 'center', color: '#aaa' }}>
         {
-          'Type your desired template using the keywords {tone} {pitch} {rate} {volume} and {desc}. The keywords will be replaced by the selected words, in the output below.'
+          'Type your desired template using the keywords {tone} {pitch} {rate} {volume} and {desc}. The keywords will be replaced by the selected words above, and the generated setence will be shown in the output box below.'
         }
       </p>
       <div
