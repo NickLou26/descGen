@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 const defaultTemplate =
   "The speaker's tone is {tone}, with a {pitch} pitch and a {rate} delivery. Their volume is {volume}, suggesting that they feel {desc}.";
@@ -527,8 +528,11 @@ function Dropdown({ label, options, selected, onChange }) {
 }
 
 export default function ScrollSelections() {
+  const cookieTemplate = Cookies.get('templateValue');
   const [emotionSelection, setEmotionSelection] = useState('');
-  const [template, setTemplateValue] = useState(defaultTemplate);
+  const [template, setTemplateValue] = useState(
+    cookieTemplate || defaultTemplate
+  );
   const [selections, setSelections] = useState({
     tone: '',
     pitch: '',
@@ -632,7 +636,9 @@ export default function ScrollSelections() {
   //Copy output to clipboard
   const handleCopy = () => {
     navigator.clipboard.writeText(generateOutput());
+  };
 
+  const handleReset = () => {
     setSelections({
       tone: '',
       pitch: '',
@@ -642,6 +648,12 @@ export default function ScrollSelections() {
     });
 
     setEmotionSelection('');
+  };
+
+  //Save template in cookies
+  const saveCookie = () => {
+    Cookies.set('templateValue', template, { expires: 365 }); // Cookie expires in 7 days
+    alert('Template saved!');
   };
 
   return (
@@ -681,6 +693,11 @@ export default function ScrollSelections() {
       <p style={{ textAlign: 'center', color: '#aaa', marginTop: '2rem' }}>
         Template
       </p>
+      <p style={{ textAlign: 'center', color: '#aaa' }}>
+        {
+          'Type your desired template using the keywords {tone} {pitch} {rate} {volume} and {desc}. The keywords will be replaced by the selected words, in the output below.'
+        }
+      </p>
       <div
         style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }}
       >
@@ -698,8 +715,24 @@ export default function ScrollSelections() {
             color: 'white',
             border: '1px solid #444',
             borderRadius: '8px',
+            marginRight: '1rem',
           }}
         />
+
+        <button
+          onClick={saveCookie}
+          style={{
+            padding: '0.75rem 1.5rem',
+            fontSize: '1rem',
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+          }}
+        >
+          Save
+        </button>
       </div>
       <p style={{ textAlign: 'center', color: '#aaa', marginTop: '2rem' }}>
         Output
@@ -734,9 +767,23 @@ export default function ScrollSelections() {
             border: 'none',
             borderRadius: '6px',
             cursor: 'pointer',
+            marginRight: '1rem',
           }}
         >
           Copy Output
+        </button>
+        <button
+          onClick={handleReset}
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: '#8B0000',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+          }}
+        >
+          Reset
         </button>
       </div>
     </div>
