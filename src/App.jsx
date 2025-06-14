@@ -231,6 +231,7 @@ export default function ScrollSelections() {
   //Copy output to clipboard
   const handleCopy = () => {
     navigator.clipboard.writeText(generateOutput());
+    handleReset();
   };
 
   const handleReset = () => {
@@ -354,10 +355,11 @@ export default function ScrollSelections() {
         style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}
       >
         <button
+          disabled={emotionSelection == ''}
           onClick={handleCopy}
           style={{
             padding: '0.5rem 1rem',
-            backgroundColor: '#444',
+            backgroundColor: emotionSelection == '' ? '#1a1a1a' : '#444',
             color: 'white',
             border: 'none',
             borderRadius: '6px',
@@ -367,7 +369,7 @@ export default function ScrollSelections() {
         >
           Copy Output
         </button>
-        <button
+        {/* <button
           onClick={handleReset}
           style={{
             padding: '0.5rem 1rem',
@@ -379,7 +381,7 @@ export default function ScrollSelections() {
           }}
         >
           Reset
-        </button>
+        </button> */}
       </div>
     </div>
   );
