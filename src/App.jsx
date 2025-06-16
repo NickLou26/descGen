@@ -320,7 +320,7 @@ export default function ScrollSelections() {
           style={{
             padding: '0.75rem 1.5rem',
             fontSize: '1rem',
-            backgroundColor: '#4CAF50',
+            backgroundColor: '#444',
             color: 'white',
             border: 'none',
             borderRadius: '8px',
@@ -359,7 +359,7 @@ export default function ScrollSelections() {
           onClick={handleCopy}
           style={{
             padding: '0.5rem 1rem',
-            backgroundColor: emotionSelection == '' ? '#1a1a1a' : '#444',
+            backgroundColor: emotionSelection == '' ? '#1a1a1a' : '#4CAF50',
             color: 'white',
             border: 'none',
             borderRadius: '6px',
