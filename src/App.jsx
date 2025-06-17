@@ -79,7 +79,7 @@ const emotions = [
   },
   {
     label: 'Neutral',
-    tone: ['professional', 'factual', 'authoritative', 'informative', 'formal'],
+    tone: ['professional', 'factual', 'authoritative', 'conversational'],
     pitch: ['moderate', 'even', 'monotone'],
     rate: ['measured', 'steady', 'unhurried'],
     volume: ['consistent', 'discreet', 'quiet', 'balanced'],
@@ -254,6 +254,12 @@ export default function ScrollSelections() {
     setEmotionSelection('');
   };
 
+  //Copy "foreign language" to clipboard
+  const handleForeign = () => {
+    navigator.clipboard.writeText('Foreign Language');
+    handleReset();
+  };
+
   //Save template in cookies
   const saveCookie = () => {
     Cookies.set('templateValue', template, { expires: 365 }); // Cookie expires in 7 days
@@ -377,20 +383,30 @@ export default function ScrollSelections() {
         >
           Copy Output
         </button>
-        {/* <button
-          onClick={handleReset}
+      </div>
+      <div
+        style={{
+          marginTop: '10rem',
+          display: 'flex',
+          justifyContent: 'left',
+        }}
+      >
+        <button
+          onClick={handleForeign}
           style={{
             padding: '0.5rem 1rem',
-            backgroundColor: '#8B0000',
+            backgroundColor: '#a38b1f',
             color: 'white',
             border: 'none',
             borderRadius: '6px',
             cursor: 'pointer',
+            marginRight: '1rem',
           }}
         >
-          Reset
-        </button> */}
+          Foreign Language
+        </button>
       </div>
+      <p style={{ color: '#aaa' }}>Copies "Foreign Language" to clipboard</p>
     </div>
   );
 }
