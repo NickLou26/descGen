@@ -77,6 +77,14 @@ const emotions = [
     volume: ['light', 'steady', 'quiet', 'balanced', 'hushed'],
     desc: ['peaceful', 'grounded', 'centered', 'composed', 'tranquil'],
   },
+  {
+    label: 'Neutral',
+    tone: ['professional', 'factual', 'authoritative', 'informative', 'formal'],
+    pitch: ['moderate', 'even', 'monotone'],
+    rate: ['measured', 'steady', 'unhurried'],
+    volume: ['consistent', 'discreet', 'quiet', 'balanced'],
+    desc: ['objective', 'indifferent', 'unbiased', 'impartial'],
+  },
 ];
 
 function Dropdown({ label, options, selected, onChange }) {
@@ -272,7 +280,7 @@ export default function ScrollSelections() {
           marginBottom: '2rem',
         }}
       >
-        Emotion Gen
+        Desc Gen
       </h2>
       <div
         style={{
