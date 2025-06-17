@@ -289,7 +289,7 @@ export default function ScrollSelections() {
         Desc Gen
       </h2>
       <p style={{ textAlign: 'center', color: '#aaa', marginTop: '2rem' }}>
-        Select an emotion and options will appear accordingly.
+        Select an emotion and options will appear accordingly
       </p>
       <div
         style={{
