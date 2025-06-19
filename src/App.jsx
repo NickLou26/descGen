@@ -213,14 +213,18 @@ export default function ScrollSelections() {
   dropdowns.push(volumeDropdown);
   dropdowns.push(descDropdown);
 
-  //Generate output with the coorect words
+  //Generate output with the correct words
   const generateOutput = () => {
     return template
       .replace('{tone}', selections['tone'] || '{tone}')
       .replace('{pitch}', selections['pitch'] || '{pitch}')
       .replace('{rate}', selections['rate'] || '{rate}')
       .replace('{volume}', selections['volume'] || '{volume}')
-      .replace('{desc}', selections['desc'] || '{desc}');
+      .replace('{desc}', selections['desc'] || '{desc}')
+      .replace(
+        '{emotion}',
+        emotionSelection.label.toLowerCase() || '{emotion}'
+      );
   };
 
   //Handle changes within dropdowns
@@ -266,6 +270,12 @@ export default function ScrollSelections() {
     alert('Template saved!');
   };
 
+  //Save template in cookies
+  const resetTemplate = () => {
+    setTemplateValue(defaultTemplate);
+    Cookies.set('templateValue', defaultTemplate, { expires: 365 }); // Cookie expires in 7 days
+  };
+
   return (
     <div
       style={{
@@ -308,7 +318,7 @@ export default function ScrollSelections() {
       </p>
       <p style={{ textAlign: 'center', color: '#aaa' }}>
         {
-          'Type your desired template using the keywords {tone} {pitch} {rate} {volume} and {desc}. The keywords will be replaced by the selected words above, and the generated sentence will be shown in the output box below.'
+          'Type your desired template using the keywords {tone} {pitch} {rate} {volume}, {desc} and {emotion}. The keywords will be replaced by the selected words above, and the generated sentence will be shown in the output box below.'
         }
       </p>
       <div
@@ -331,7 +341,6 @@ export default function ScrollSelections() {
             marginRight: '1rem',
           }}
         />
-
         <button
           onClick={saveCookie}
           style={{
@@ -345,6 +354,21 @@ export default function ScrollSelections() {
           }}
         >
           Save
+        </button>
+        <button
+          onClick={resetTemplate}
+          style={{
+            marginLeft: '1rem',
+            padding: '0.75rem 1.5rem',
+            fontSize: '1rem',
+            backgroundColor: '#444',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+          }}
+        >
+          Reset
         </button>
       </div>
       <p style={{ textAlign: 'center', color: '#aaa', marginTop: '2rem' }}>
