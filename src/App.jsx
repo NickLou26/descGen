@@ -355,7 +355,7 @@ export default function ScrollSelections() {
         >
           Save
         </button>
-        {/* <button
+        <button
           onClick={resetTemplate}
           style={{
             marginLeft: '1rem',
@@ -369,7 +369,7 @@ export default function ScrollSelections() {
           }}
         >
           Reset
-        </button> */}
+        </button>
       </div>
       <p style={{ textAlign: 'center', color: '#aaa', marginTop: '2rem' }}>
         Output
