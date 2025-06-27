@@ -87,16 +87,16 @@ const emotions = [
   },
 ];
 
-let preset1 = '',
-  preset2 = '',
-  preset3 = '',
-  preset4 = '',
-  preset5 = '',
-  preset6 = '',
-  preset7 = '',
-  preset8 = '',
-  preset9 = '',
-  preset10 = '';
+let preset1 = Cookies.get('preset1'),
+  preset2 = Cookies.get('preset2'),
+  preset3 = Cookies.get('preset3'),
+  preset4 = Cookies.get('preset4'),
+  preset5 = Cookies.get('preset5'),
+  preset6 = Cookies.get('preset6'),
+  preset7 = Cookies.get('preset7'),
+  preset8 = Cookies.get('preset8'),
+  preset9 = Cookies.get('preset9'),
+  preset10 = Cookies.get('preset10');
 
 function Dropdown({ label, options, selected, onChange }) {
   const handleChange = (e) => {
@@ -471,7 +471,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset1')}
+          defaultValue={preset1}
           onChange={(e) => {
             preset1 = e.target.value;
           }}
@@ -521,7 +521,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset2')}
+          defaultValue={preset2}
           onChange={(e) => {
             preset2 = e.target.value;
           }}
@@ -571,7 +571,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset3')}
+          defaultValue={preset3}
           onChange={(e) => {
             preset3 = e.target.value;
           }}
@@ -621,7 +621,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset4')}
+          defaultValue={preset4}
           onChange={(e) => {
             preset4 = e.target.value;
           }}
@@ -671,7 +671,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset5')}
+          defaultValue={preset5}
           onChange={(e) => {
             preset5 = e.target.value;
           }}
@@ -721,7 +721,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset6')}
+          defaultValue={preset6}
           onChange={(e) => {
             preset6 = e.target.value;
           }}
@@ -771,7 +771,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset7')}
+          defaultValue={preset7}
           onChange={(e) => {
             preset7 = e.target.value;
           }}
@@ -821,7 +821,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset8')}
+          defaultValue={preset8}
           onChange={(e) => {
             preset8 = e.target.value;
           }}
@@ -871,7 +871,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset9')}
+          defaultValue={preset9}
           onChange={(e) => {
             preset9 = e.target.value;
           }}
@@ -921,7 +921,7 @@ export default function ScrollSelections() {
       >
         <input
           type="text"
-          defaultValue={Cookies.get('preset10')}
+          defaultValue={preset10}
           onChange={(e) => {
             preset10 = e.target.value;
           }}
